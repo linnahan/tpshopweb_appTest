@@ -1,8 +1,5 @@
-import os
-import time
-
+import os,time
 from selenium.webdriver.support.wait import WebDriverWait
-
 from tpshopweb_appTest.base import log
 from tpshopweb_appTest.config import DIR_PATH
 

@@ -1,5 +1,4 @@
 from time import sleep
-
 from tpshopweb_appTest import page
 from tpshopweb_appTest.base.base import Base
 

@@ -1,8 +1,5 @@
 import unittest
 from time import sleep
-from tpshopweb_appTest import page
-
-
 from tpshopweb_appTest.base import log
 from tpshopweb_appTest.page.page_web_login import PageWebLogin
 from tpshopweb_appTest.page.page_web_order import PageWebOrder
@@ -30,7 +27,6 @@ class TestWebLoginOrder(unittest.TestCase):
             # 打印订单
             order_no = self.order.page_order_get_on()
             print("发货的订单为：", order_no)
-            # self.assertEqual(page_login.order_on, order_no)
             self.assertIn(order_no, read_json("expect.json", "expect")[0][0])
             log.info("=======>发货成功，发货的订单号为：{}".format(read_json("expect.json", "expect")[0][0]))
 

@@ -18,9 +18,9 @@ class GetDriver:
             # 必填-且正确
             desired_caps['platformName'] = 'Android'
             # 必填-且正确
-            desired_caps['platformVersion'] = '7.1.2'
+            desired_caps['platformVersion'] = '7.1'
             # 必填
-            desired_caps['deviceName'] = '192.168.56.101:5555'
+            desired_caps['deviceName'] = '127.0.0.1:62001'
             # APP包名 com.tpshop.malls/.SPMainActivity
             desired_caps['appPackage'] = "com.tpshop.malls"
             # 启动名
@@ -49,8 +49,9 @@ def read_json(filename, key):
     with open(file_path, "r", encoding="utf-8")as f:
         for data in json.load(f).get(key):
             arrs.append(tuple(data.values())[1:])
-        return arrs
+        return arrs     # 返回[(),(),()]
 
+# 写json工具
 def write_json(value):
     file_path = DIR_PATH + os.sep + "data" + os.sep + "expect.json"
     with open(file_path,"w",encoding="utf-8")as f:
@@ -83,6 +84,7 @@ class GetLog:
             cls.__log.addHandler(tf)
         # 返回日志器
         return cls.__log
+
 
 if __name__ == '__main__':
     # 预期：[(),()]

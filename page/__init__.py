@@ -1,6 +1,5 @@
 from selenium.webdriver.common.by import By
 
-from tpshopweb_appTest import config
 
 """
     一、以下为app登录模块配置信息    

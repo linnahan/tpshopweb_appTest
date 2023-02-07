@@ -1,7 +1,5 @@
 import unittest
-from tpshopweb_appTest import config
 from parameterized import parameterized
-from tpshopweb_appTest import page
 from tpshopweb_appTest.base import log
 from tpshopweb_appTest.page.page_app_login import PageAppLogin
 from tpshopweb_appTest.page.page_app_order import PageAppOrder
@@ -12,24 +10,24 @@ class TestAppLoginOrder(unittest.TestCase):
     def setUp(self) -> None:
         self.driver = GetDriver.get_app_driver()
         # 获取PageAppLogin实例
-        self.app = PageAppLogin(self.driver)
-        # 获取PageAppOrder
+        self.login = PageAppLogin(self.driver)
+        # 获取PageAppOrder实例
         self.order = PageAppOrder(self.driver)
 
     def tearDown(self) -> None:
         self.driver.quit()
 
     @parameterized.expand(read_json("app_order.json","order"))
-    def test01_login_order(self, search_value, pwd,expect_text):
+    def test01_login_order(self, search_value, pay_pwd, expect_text):
         try:
             # 调用登录
-            self.app.page_app_login()
+            self.login.page_app_login()
             # 打印昵称->断言
-            nickname = self.app.page_app_get_nickname()
+            nickname = self.login.page_app_get_nickname()
             print("登录账户昵称为：", nickname)
             self.assertEqual(expect_text,nickname)
             # 下订单
-            self.order.page_app_order(search_value, pwd)
+            self.order.page_app_order(search_value, pay_pwd)
             # 获取订单编号
             order_on = self.order.page_app_get_order_on()
             print("获取的订单编号为：", order_on)
